@@ -1,0 +1,105 @@
+.tiketDetailsContainer {
+    position: relative;
+    background-color: var(--color-accent);
+    margin-top: 2rem;
+    box-shadow: 0 0 10px #0004;
+    border-radius: var(--rds-m);
+    padding: 1rem;
+    color: var(--white);
+    overflow: auto;
+    max-height: 80vh;
+    width: max(70%, 30rem);
+}
+
+.tiketDetailsContainer .li-column {
+    font-size: clamp(2rem, 1rem + 1.2vw, 5rem);
+    font-weight: 600;
+    white-space: nowrap;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.downImg {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.downImg img:hover {
+    fill: #fff;
+    cursor: pointer;
+}
+
+.downImg img {
+    width: 4rem;
+    fill: #fff5;
+}
+
+.tiketDetailsContainer .li-row {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr .5fr;
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-around; */
+}
+
+.tiketDetailsContainer .li-column span {
+    display: block;
+    white-space: nowrap;
+    font-size: clamp(1.5rem, .2rem + 1vw, 2.5rem);
+}
+
+.bookedBy {
+    font-size: clamp(2rem, 1rem + 1vw, 5rem);
+    display: flex;
+    justify-content: space-around;
+    padding: clamp(1rem, .4rem + 2vw, 4rem);
+}
+
+.priceDetails {
+    font-size: clamp(2rem, 1rem + 1vw, 5rem);
+    padding: 0 clamp(1rem, 8rem + 2vw, 4rem);
+}
+
+.priceDetails .head {
+    font-size: clamp(2.5rem, 1rem + 1vw, 5rem);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.priceDetails .prow {
+    display: grid;
+    grid-template-columns: 3fr repeat(5, 1fr);
+}
+
+.priceDetails .grandTotal {
+    display: grid;
+    grid-template-columns: 2fr repeat(5, 1fr);
+}
+
+.priceDetails .grandTotal span {
+    grid-column-start: 6;
+}
+
+
+/* .bookedBy .right .head{
+    font-size: clamp(2rem);
+} */
+
+.bookedBy .right .body {
+    margin-left: 2rem;
+    font-size: clamp(1.5rem, 1rem + .5vw, 3rem)
+    /* background-color: aqua;
+    
+    word-break: break-all;
+    
+    white-space: pre !important; */
+}
+
+.travelDirection {
+    font-size: clamp(3rem, 1rem + 1vw, 5rem);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 600;
+}

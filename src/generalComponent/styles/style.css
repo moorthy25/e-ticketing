@@ -1,0 +1,25 @@
+.shadow {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.74);
+}
+
+.radius-small {
+    border-radius: var(--rds-s);
+}
+
+.radius-medium {
+    border-radius: var(--rds-m);
+}
+
+.radius-large {
+    border-radius: var(--rds-l);
+}
+
+.c-primary {
+    color: var(--color-primary);
+}
+.c-secondary {
+    color: var(--color-secondary);
+}
+.c-accent {
+    color: var(--color-accent);
+}

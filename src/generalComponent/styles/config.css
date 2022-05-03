@@ -1,0 +1,17 @@
+:root {
+    font-size: 10px;
+    /* calc(10px + 1vw); */
+    --white: white;
+    --black: black;
+    --color-primary: #E0D8B0;
+    --color-secondary: #FCFFE7;
+    --color-accent: #DEA057;
+    --color-bg: #CE9461;
+    /* --color-primary: #CE9461;
+    --color-secondary: #DEA057;
+    --color-accent: #FCFFE7;
+    --color-bg: #E0D8B0; */
+    --rds-s: 8px;
+    --rds-m: 12px;
+    --rds-l: 15px;
+}
