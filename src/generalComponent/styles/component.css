@@ -1,4 +1,78 @@
-input {
+.ninput {
+    border: none;
+    padding: 0;
+    outline: none;
+    margin: 0;
+}
+
+.component-wraper .component-DropDown {
+    max-height: 15rem;
+    overflow: auto;
+}
+
+.component-wraper .binder input {
+    width: 80%;
+    vertical-align: middle;
+}
+
+.component-wraper .binder svg {
+    display: inline-block;
+    width: 20%;
+    vertical-align: middle;
+}
+
+.component-wraper .binder {
+    /* min-width: 8rem; */
+    outline: none;
+}
+
+.component-wraper .binder input:focus ~ .compoent-children-wraper {
+    display: block;
+}
+
+.component-wraper .binder:focus .compoent-children-wraper {
+    display: block;
+}
+
+.component-wraper .binder {
+    /* display: flex;
+    flex-direction: row; */
+    cursor: pointer;
+    align-items: center;
+}
+
+.component-wraper {
+    width: 100%;
+    position: relative;
+    border: 1px solid var(--color-primary);
+    border-radius: var(--rds-s);
+}
+
+.component-wraper .compoent-children-wraper>div:hover {
+    cursor: pointer;
+    /* opacity: .8; */
+    background-color: var(--color-accent);
+}
+
+.component-wraper .compoent-children-wraper>div {
+    /* margin-bottom: .4rem; */
+    background-color: var(--color-primary);
+    padding: 1rem;
+    white-space: nowrap;
+}
+
+.component-wraper .compoent-children-wraper {
+    position: absolute;
+    display: none;
+    font-size: 1.6rem;
+    top: calc(1.6rem + 2rem);
+    border-radius: var(--rds-s);
+    left: -1.5rem;
+    background-color: var(--color-secondary);
+}
+
+input,
+select {
     outline: none;
     border: 1px solid var(--color-primary);
     padding: 1%;

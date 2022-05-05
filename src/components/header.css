@@ -1,4 +1,6 @@
 .headerContainer{
     background-color: var(--color-secondary);
     align-items: center;
+    height: 10%;
+    min-height: 5rem;
 }

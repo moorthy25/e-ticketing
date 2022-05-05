@@ -4,7 +4,7 @@ import UserNavbar from "./UserNavbar";
 
 const Header = ({ admin = false }) => {
     return (
-        <div className="w100 h10 headerContainer">
+        <div className="w100 headerContainer">
             {/* <h3>onTheGO</h3> */}
             {/* <div className=" h100 "> */}
                 <UserNavbar />

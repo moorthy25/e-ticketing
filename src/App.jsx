@@ -9,6 +9,8 @@ import Conductor from './route/Conductor';
 import User from './route/User';
 import History from './components/History';
 import TicketDetails from './components/TicketDetails';
+import BookTicket from './components/user/BookTicket';
+import Buses from './components/admin/Buses';
 
 function App() {
   return (
@@ -17,10 +19,13 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/user' element={<User />} >
+          <Route path='' index element={<BookTicket />} />
           <Route path='history' element={<History />} />
           <Route path='history/:ticketID' element={<TicketDetails />} />
         </Route>
-        <Route path='/admin' element={<Admin />} />
+        <Route path='/admin' element={<Admin />} >
+          <Route path='buses' element={<Buses />} />
+        </Route>
         <Route path='/conductor' element={<Conductor />} />
         <Route path='*' element={<NotFound />} />
       </Routes>

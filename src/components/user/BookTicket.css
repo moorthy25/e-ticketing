@@ -1,0 +1,37 @@
+.payIcon {
+    width: 2rem;
+}
+
+.BookTicket>* {
+    margin: 1rem auto;
+}
+
+.BookTicket {
+    background-color: var(--color-accent);
+    padding: 2rem;
+    border-radius: var(--rds-m);
+    text-align: center;
+    width: max(35%, 28rem);
+}
+
+
+/* .BookTicket .row {
+    background: #000;
+} */
+
+.locationSelection {
+    width: 50%;
+    margin: 0 2rem;
+    font-size: clamp(2rem, 1rem + 1vw, 5rem);
+    border-radius: var(--rds-s);
+}
+
+.amtDisplay {
+    text-align: center;
+    font-size: clamp(2.5rem, 1.2rem + 1vw, 5.2rem);
+    color: var(--white);
+}
+
+.amtDisplay span {
+    font-weight: 600;
+}
