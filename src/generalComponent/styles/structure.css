@@ -122,6 +122,14 @@ body {
     width: 10%;
 }
 
+.w-min {
+    width: min-content;
+}
+
+.w-max {
+    width: max-content;
+}
+
 
 /* padding size  */
 

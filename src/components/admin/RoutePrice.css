@@ -1,0 +1,72 @@
+.routePriceContainer {
+    margin-top: 1rem;
+    padding: 1rem;
+    max-height: 80vh;
+    overflow: auto;
+    border-radius: var(--rds-s);
+    width: 90%;
+    background-color: var(--color-accent);
+}
+
+.routeHead>* {
+    display: inline-block;
+    width: max-content;
+}
+
+.routeHead>button>* {
+    /* width: 2.5rem; */
+    vertical-align: middle;
+}
+
+.routeHead>button {
+    float: right;
+    padding: .1rem .5rem;
+}
+
+.routeHead .routePicker {
+    margin-left: 2rem;
+    padding: .2em;
+}
+
+.routeHead {
+    background-color:var(--color-accent);
+    margin-bottom: 1rem;
+    position: sticky;
+    top: 0;
+    color: var(--white);
+}
+
+.routePriceMapContainer .routeLine>* {
+    display: inline;
+}
+
+.routePriceMapContainer .routeLine {
+    margin-bottom: 0.5rem;
+}
+
+.routePriceMapContainer .routeLine .routeLineContainer>* {
+    margin-right: .5rem;
+    width: 8rem;
+}
+
+.routePriceMapContainer .routeLine{
+    /* display: flex;
+    flex-direction: row; */
+    white-space: nowrap;
+    width: 100%;
+    /* overflow: auto; */
+}
+.routePriceContainer button{
+position: sticky;
+left: 0;
+bottom: 0;
+}
+.routePriceMapContainer{
+    /* position: relative; */
+    /* display: flex;
+    flex-direction: row; */
+    /* flex-wrap: nowrap; */
+    /* max-width: 90%; */
+    /* max-height: 80vh; */
+    overflow: auto;
+}

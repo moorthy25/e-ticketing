@@ -20,9 +20,19 @@ const Forms = ({ children, onSubmit, className, ...rest }) => {
 }
 
 
-const Input = ({ placeholder = "", onChange, name, type, className, ...rest }) => {
+const Input = ({ placeholder = "", onChange: onCng, name, type, className, ...rest }) => {
+    let onChange = onCng;
+    if (type === "number") {
+        type = "text";
+        onChange = (e, v) => {
+            // console.log("typeof Number(v)", typeof Number(v));
+            if (!isNaN(v))
+                onCng(e, v);
+        }
+    }
+    // console.log("onChange", onChange);
     return (
-        <input {...rest} name={name} onChange={onChange} placeholder={placeholder} className={className} type={type} />
+        <input {...rest} name={name} onChange={e => onChange(e, e.target.value)} placeholder={placeholder} className={className} type={type} />
     );
 }
 
@@ -30,10 +40,10 @@ const Select = ({ children = [], name, placeholder = "", onChange, inputClassNam
     const [selected, setSelected] = useState({ value: "", text: "" });
     const [searchStr, setSearchStr] = useState("");
     Select.data = { value: selected, setValue: setSelected, setSearchStr, onChange }
-    console.log("children", children);
-    const filtered = children.filter(v => v.props.children.toLowerCase().indexOf(searchStr.toLowerCase()))
+    // console.log("children", children);
+    const filtered = children.filter(v => v.props.children.toLowerCase().indexOf(searchStr.toLowerCase()) > -1)
         .sort((a, b) => a.props.children.toLowerCase().indexOf(searchStr.toLowerCase()) - b.props.children.toLowerCase().indexOf(searchStr.toLowerCase()));
-    console.log("filtered", filtered.map(d => d.props));
+    // console.log("filtered", filtered.map(d => d.props));
     // const filtered=children.indexOf(Select.data.searchStr) > -1
     return (
         <div className={`component-wraper ${className}`}>

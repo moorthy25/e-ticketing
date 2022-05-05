@@ -11,6 +11,7 @@ import History from './components/History';
 import TicketDetails from './components/TicketDetails';
 import BookTicket from './components/user/BookTicket';
 import Buses from './components/admin/Buses';
+import RoutePrice from './components/admin/RoutePrice';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         </Route>
         <Route path='/admin' element={<Admin />} >
           <Route path='buses' element={<Buses />} />
+          <Route path='route' element={<RoutePrice />} />
         </Route>
         <Route path='/conductor' element={<Conductor />} />
         <Route path='*' element={<NotFound />} />
