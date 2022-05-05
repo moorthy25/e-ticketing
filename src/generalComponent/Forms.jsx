@@ -3,10 +3,11 @@ import { useState } from "react";
 const Forms = ({ children, onSubmit, className, ...rest }) => {
     const exSubmit = e => {
         e.preventDefault();
-        // console.log(e);
+        console.log(e);
         let list = []
-        for (let index = 0; index < e.target.children.length; index++) {
-            const element = e.target.children[index];
+        for (let index = 0; index < e.target.length; index++) {
+            const element = e.target[index];
+            console.log(element.name);
             if (element.name)
                 list.push({ [element.name]: element.value })
         }
@@ -20,25 +21,29 @@ const Forms = ({ children, onSubmit, className, ...rest }) => {
 }
 
 
-const Input = ({ placeholder = "", onChange: onCng, name, type, className, ...rest }) => {
+const Input = ({ placeholder = "", value, onChange: onCng = (e, v, setD) => { console.log(v); setD(v) }, name, type, className, ...rest }) => {
+    const [d, setD] = useState("");
     let onChange = onCng;
     if (type === "number") {
         type = "text";
-        onChange = (e, v) => {
+        onChange = (e, v, se) => {
             // console.log("typeof Number(v)", typeof Number(v));
-            if (!isNaN(v))
-                onCng(e, v);
+            if (!isNaN(v)) {
+                setD(v)
+                onCng(e, v, se);
+            }
         }
     }
     // console.log("onChange", onChange);
     return (
-        <input {...rest} name={name} onChange={e => onChange(e, e.target.value)} placeholder={placeholder} className={className} type={type} />
+        <input {...rest} name={name} value={value || d} onChange={e => onChange(e, e.target.value, setD)} placeholder={placeholder} className={className} type={type} />
     );
 }
 
-const Select = ({ children = [], name, placeholder = "", onChange, inputClassName, className, ...rest }) => {
+const Select = ({ children = [], name, placeholder = "", onChange: onch, inputClassName, className, ...rest }) => {
     const [selected, setSelected] = useState({ value: "", text: "" });
     const [searchStr, setSearchStr] = useState("");
+    const onChange = onch;
     Select.data = { value: selected, setValue: setSelected, setSearchStr, onChange }
     // console.log("children", children);
     const filtered = children.filter(v => v.props.children.toLowerCase().indexOf(searchStr.toLowerCase()) > -1)
@@ -66,11 +71,14 @@ const Select = ({ children = [], name, placeholder = "", onChange, inputClassNam
 
 const Option = ({ children, value, ...rest }) => {
     // e.target.getAttribute           style={ ? { display: "none" } : {}}
+    const setValue = Select.data.setValue;
+    const setSearchStr = Select.data.setSearchStr;
+    const onChange = Select.data.onChange;
     return (
         <div {...rest} onClick={e => {
-            Select.data.setValue({ value, text: children })
-            Select.data.setSearchStr(children)
-            if (typeof Select.data.onChange === 'function') Select.data.onChange({ value, text: children })
+            setValue({ value, text: children })
+            setSearchStr(children)
+            if (typeof onChange === 'function') onChange({ value, text: children })
         }} data-value={value} >
             {children}
         </div>
