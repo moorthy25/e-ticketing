@@ -1,0 +1,16 @@
+.qrContainer {
+    padding: 1rem;
+    margin: 1rem auto;
+    border-radius: var(--rds-m);
+    background-color: var(--color-accent);
+}
+
+.qrContainer>* {
+    margin: 1rem auto;
+}
+
+.qrColumn {
+    width: 25rem;
+    height: 25rem;
+    background-color: burlywood;
+}

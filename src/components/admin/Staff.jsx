@@ -1,97 +1,61 @@
+// import './Staff.css'
+// const Staff = () => {
+//     return ( <>
+//     <div className="center">
+//         <div className="staff">
+//             hello
+//         </div>
+//     </div>
+//     </> );
+// }
 import Forms from "../../generalComponent/Forms";
 import delIcon from '../../assets/delete.svg'
 import editIcon from '../../assets/edit.svg'
 import check from '../../assets/check.svg'
 import './Buses.css'
 
-const Buses = () => {
+const Staff = () => {
     const busList = [
         {
-            regno: "TN 69 N 4465",
-            driver: "Sanjay",
-            conductor: "Arun",
-            route: "Tiruchendur - Tirunelveli",
+            phone: "9876543210",
+            name: "Sanjay"
         },
         {
-            regno: "TN 69 N 4465",
-            driver: "Sanjay",
-            conductor: "Arun",
-            route: "Tiruchendur - Tirunelveli",
+            phone: "9876543210",
+            name: "Sanjay"
         },
         {
-            regno: "TN 69 N 4465",
-            driver: "Sanjay",
-            conductor: "Arun",
-            route: "Tiruchendur - Tirunelveli",
+            phone: "9876543210",
+            name: "Sanjay"
         },
         {
-            regno: "TN 69 N 4465",
-            driver: "Sanjay",
-            conductor: "Arun",
-            route: "Tiruchendur - Tirunelveli",
+            phone: "9876543210",
+            name: "Sanjay"
         },
         {
-            regno: "TN 69 N 4465",
-            driver: "Sanjay",
-            conductor: "Arun",
-            route: "Tiruchendur - Tirunelveli",
+            phone: "9876543210",
+            name: "Sanjay"
         },
         {
-            regno: "TN 69 N 4465",
-            driver: "Sanjay",
-            conductor: "Arun",
-            route: "Tiruchendur - Tirunelveli",
+            phone: "9876543210",
+            name: "Sanjay"
         },
         {
-            regno: "TN 69 N 4465",
-            driver: "Sanjay",
-            conductor: "Arun",
-            route: "Tiruchendur - Tirunelveli",
+            phone: "9876543210",
+            name: "Sanjay"
         },
-    ]
-    const routes = [
-        { id: "Tir-Aru", value: "Tiruchendur - Aruppukottai" },
-        { id: "Tho-Kad", value: "Thoothukudi - Kadalur" },
-        { id: "Aru-Kan", value: "Aruppukottai - Kancheepuram" },
-        { id: "Mad-Koy", value: "Madurai - Koyampedu" },
-        { id: "Ram-Mad", value: "Ramanathapuram - Madurai" },
-        { id: "Put-Put", value: "Puthuchery - Puthuchery" },
-        { id: "Kad-Ram", value: "Kadalur - Ramanathapuram" },
-        { id: "Kan-Tha", value: "Kancheepuram - Thambaram" },
-        { id: "Tha-Tho", value: "Thambaram - Thoothukudi" },
-        { id: "Koy-Tir", value: "Koyampedu - Tiruchendur" },
-        { id: "Tir-Tir", value: "Tiruchendur - Tiruchendur" },
-        { id: "Tho-Tho", value: "Thoothukudi - Thoothukudi" },
-        { id: "Aru-Tha", value: "Aruppukottai - Thambaram" },
-        { id: "Mad-Ram", value: "Madurai - Ramanathapuram" },
-        { id: "Ram-Put", value: "Ramanathapuram - Puthuchery" },
-        { id: "Put-Mad", value: "Puthuchery - Madurai" },
-        { id: "Kad-Koy", value: "Kadalur - Koyampedu" },
-        { id: "Kan-Kan", value: "Kancheepuram - Kancheepuram" },
-        { id: "Tha-Kad", value: "Thambaram - Kadalur" },
-        { id: "Koy-Aru", value: "Koyampedu - Aruppukottai" },
+        {
+            phone: "9876543210",
+            name: "Sanjay"
+        },
     ]
     return (
         <div className="center">
             <div className="busesDetails">
                 <div className="controls">
                     <Forms className={'dataFields row'}>
-                        <Forms.Input placeholder="Reg No" name={'regno'} />
-                        {/* <Forms.Input placeholder="Driver" name={'driver'} /> */}
-                        <Forms.Input placeholder="Conductor" name={'conductor'} />
-                        <Forms.Select placeholder="Current Route" onChange={d=>console.log(d)} name={'currentRoute'}>
-                            {routes.map(d =>
-                                <Forms.Option key={d.id} value={d.id} >{d.value}</Forms.Option>
-                            )}
-                            {/* <Forms.Option value={'tcr-tnv'} >Tiruchendur - Tirunelveli</Forms.Option>
-                            <Forms.Option value={'tcr-tnv'} >Tiruchendur - Tirunelveli</Forms.Option>
-                            <Forms.Option value={'tcr-tnv'} >Tiruchendur - Tirunelveli</Forms.Option>
-                            <Forms.Option value={'tcr-tnv'} >Tiruchendur - Tirunelveli</Forms.Option>
-                            <Forms.Option value={'tcr-tnv'} >Tiruchendur - Tirunelveli</Forms.Option>
-                            <Forms.Option value={'tcr-tnv'} >Tiruchendur - Tirunelveli</Forms.Option>
-                            <Forms.Option value={'tcr-tnv'} >Tiruchendur - Tirunelveli</Forms.Option>
-                            <Forms.Option value={'tcr-tnv'} >Tiruchendur - Tirunelveli</Forms.Option> */}
-                        </Forms.Select>
+                        <Forms.Input placeholder="Name" name={'name'} />
+                        <Forms.Input placeholder="Phone no" type={'number'} name={'phone'} />
                         <button type="submit" className="btn primary">
                             <img src={check} alt="DONE" />
                         </button>
@@ -101,12 +65,9 @@ const Buses = () => {
                     {busList.map((d, i) =>
                         <div key={i} className="row">
                             <>
-                                <div className="details">{d.regno}</div>
-                                {/* <div className="details">{d.driver}</div> */}
-                                <div className="details">{d.conductor}</div>
-                                <div className="details">{d.route}</div>
+                                <div className="details">{d.name}</div>
+                                <div className="details">{d.phone}</div>
                                 <div className="details iconCtrl row">
-                                    {/* <img src={editIcon} alt="Edit" title="Edit" /> */}
                                     <svg width="50" viewBox="0 0 50 50" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <g>
@@ -133,5 +94,4 @@ const Buses = () => {
         </div>
     );
 }
-
-export default Buses;
+export default Staff;

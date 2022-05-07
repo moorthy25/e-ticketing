@@ -57,12 +57,14 @@
 .component-wraper .compoent-children-wraper>div {
     /* margin-bottom: .4rem; */
     background-color: var(--color-primary);
+    color: white;
     padding: 1rem;
     white-space: nowrap;
 }
 
 .component-wraper .compoent-children-wraper {
     position: absolute;
+    z-index: 5000;
     display: none;
     font-size: 1.6rem;
     top: calc(1.6rem + 2rem);

@@ -5,9 +5,9 @@ const TicketDetails = () => {
     return (
         <div className="center">
             <div className="tiketDetailsContainer">
-                <div className="downImg">
+                {/* <div className="downImg">
                     <img src={downImg} alt="Download Ticket" />
-                </div>
+                </div> */}
                 <div className="li-row">
                     <div className="li-column">
                         #1654

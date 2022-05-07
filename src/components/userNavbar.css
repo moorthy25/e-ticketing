@@ -1,9 +1,0 @@
-.navbar {
-    justify-content: space-around;
-    /* height: 100%; */
-    /* background-color: aqua; */
-    /* flex-direction: row; */
-}
-.navbar button{
-    font-size: clamp(1rem,2vw,2rem);
-}

@@ -1,9 +1,10 @@
 import Header from './Header'
+import BookTicket from './user/BookTicket';
 const Home = () => {
     return (
         <>
-            <Header />
-            <h1>From home</h1>
+            <Header home/>
+            <BookTicket />
         </>
     );
 }

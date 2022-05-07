@@ -3,21 +3,17 @@ import { Link } from "react-router-dom";
 import Forms from "../generalComponent/Forms";
 import loginImg from '../assets/login.svg';
 
-const Login = () => {
+const LoginAdmin = () => {
     function values(arr) {
         console.log(arr);
     }
     return (
         <>
             <div className="center h75 column">
-                <div className="absolute" style={{ top: 10, right: 50 }}>
-                    <Link to={'admin'} className="btn primary ws-nowrap">Admin login</Link>
-                </div>
                 <h1 className='t-center mb-1' style={{ color: "var(--color-secondary)" }}>Login</h1>
                 <Forms onSubmit={values} className={'column center w30 loginForm'}>
-                    <Forms.Input name={"phone"} type={'number'} placeholder="Phone Number" />
-
-                    <Forms.Input name={'otp'} type={'password'} placeholder="OTP" />
+                    <Forms.Input name={"username"} type={'text'} placeholder="USERNAME" />
+                    <Forms.Input name={'password'} type={'password'} placeholder="PASSWORD" />
                     {/* <div className="w100">
                         <div className="float-right">
                             <Link className="ws-nowrap fs1-5" to={'/forget'} >Forget password?</Link>
@@ -36,4 +32,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default LoginAdmin;

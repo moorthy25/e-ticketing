@@ -4,7 +4,7 @@ import Header from "../components/Header";
 const User = () => {
     return (
         <>
-            <Header />
+            <Header user />
             <Outlet />
         </>
     );

@@ -1,0 +1,6 @@
+.staff{
+    margin-top: 3rem;
+    padding: 1rem;
+    border-radius: var(--rds-m);
+    background-color: aqua;
+}

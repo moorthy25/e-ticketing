@@ -4,7 +4,7 @@ import Header from "../components/Header";
 const Admin = () => {
     return (
         <>
-            <Header />
+            <Header admin />
             <Outlet />
         </>
     );

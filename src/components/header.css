@@ -1,6 +1,27 @@
 .headerContainer{
-    background-color: var(--color-secondary);
-    align-items: center;
+    background-color: var(--color-primary);
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
     height: 10%;
     min-height: 5rem;
+}
+.nav-group>*{
+margin: 0 1rem;
+}
+.navbar {
+    justify-content: space-around;
+    height: 100%;
+    align-items: center;
+    margin: auto;
+    margin-top: 0rem;
+    /* background-color: aqua; */
+    /* flex-direction: row; */
+}
+.navbar img{
+    cursor: pointer;
+    width: 5rem;
+}
+.navbar button{
+    font-size: clamp(1rem,2vw,2rem);
 }

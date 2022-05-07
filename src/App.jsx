@@ -12,6 +12,10 @@ import TicketDetails from './components/TicketDetails';
 import BookTicket from './components/user/BookTicket';
 import Buses from './components/admin/Buses';
 import RoutePrice from './components/admin/RoutePrice';
+import HistoryVerification from './components/HistoryVerification';
+import QRGenarator from './components/admin/QRGenarator';
+import Staff from './components/admin/Staff';
+import LoginAdmin from './components/Login Admin';
 
 function App() {
   return (
@@ -19,16 +23,24 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/login/admin' element={<LoginAdmin />} />
         <Route path='/user' element={<User />} >
-          <Route path='' index element={<BookTicket />} />
+          <Route path='BookTicket' index element={<BookTicket />} />
           <Route path='history' element={<History />} />
           <Route path='history/:ticketID' element={<TicketDetails />} />
         </Route>
         <Route path='/admin' element={<Admin />} >
+          <Route path='transaction' element={<HistoryVerification admin />} />
+          <Route path='transaction/ticket/:id' element={<TicketDetails admin />} />
           <Route path='buses' element={<Buses />} />
-          <Route path='route' element={<RoutePrice />} />
+          <Route path='QR' element={<QRGenarator />} />
+          <Route path='staff' element={<Staff />} />
+          <Route path='routes' element={<RoutePrice />} />
         </Route>
-        <Route path='/conductor' element={<Conductor />} />
+        <Route path='/conductor' element={<Conductor />} >
+          <Route path='' element={<HistoryVerification />} />
+          <Route path='ticket/:id' element={<TicketDetails />} />
+        </Route>
         <Route path='*' element={<NotFound />} />
       </Routes>
     </div>
