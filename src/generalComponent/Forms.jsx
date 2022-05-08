@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const Forms = ({ children, onSubmit, className, ...rest }) => {
     const exSubmit = e => {
@@ -39,12 +39,14 @@ const Input = ({ placeholder = "", value, onChange: onCng = (e, v, setD) => { co
         <input {...rest} name={name} value={value || d} onChange={e => onChange(e, e.target.value, setD)} placeholder={placeholder} className={className} type={type} />
     );
 }
-const Select = ({ children = [], name, placeholder = "", noSuggestion = (text) => console.log("There is no suggestion", text), onChange: onch, inputClassName, className, ...rest }) => {
+const Select = ({ children = [], name, placeholder = "", reset = () => { }, noSuggestion = (text) => console.log("There is no suggestion", text), onChange: onch, inputClassName, className, ...rest }) => {
     const [selected, setSelected] = useState({ value: "", text: "" });
     const [searchStr, setSearchStr] = useState("");
     const onChange = onch;
     Select.data = { value: selected, setValue: setSelected, setSearchStr, onChange }
     // console.log("children", children);
+    // const reset = useRef(setSearchStr)
+    reset(setSearchStr)
     const filtered = children.filter(v => v.props.children.toLowerCase().indexOf(searchStr.toLowerCase()) > -1)
         .sort((a, b) => a.props.children.toLowerCase().indexOf(searchStr.toLowerCase()) - b.props.children.toLowerCase().indexOf(searchStr.toLowerCase()));
     // console.log("filtered", filtered.map(d => d.props));
