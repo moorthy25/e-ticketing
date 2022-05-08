@@ -16,7 +16,7 @@ const QRGenarator = () => {
                 <QRCodeCanvas
                     size={250}
                     includeMargin
-                    imageSettings={{ src: busIcon }}
+                    imageSettings={{ src: busIcon ,width:50,height:50}}
                     value={`${window.location.origin}/?vehicle=${vehno.replace(/[ ]/g, "")}`}
                 />
             </div>

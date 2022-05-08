@@ -4,12 +4,12 @@ const Forms = ({ children, onSubmit, className, ...rest }) => {
     const exSubmit = e => {
         e.preventDefault();
         console.log(e);
-        let list = []
+        let list = {}
         for (let index = 0; index < e.target.length; index++) {
             const element = e.target[index];
-            console.log(element.name);
+            // console.log(element.name);
             if (element.name)
-                list.push({ [element.name]: element.value })
+                list[element.name] = element.value
         }
         onSubmit(list)
     }
@@ -39,8 +39,7 @@ const Input = ({ placeholder = "", value, onChange: onCng = (e, v, setD) => { co
         <input {...rest} name={name} value={value || d} onChange={e => onChange(e, e.target.value, setD)} placeholder={placeholder} className={className} type={type} />
     );
 }
-
-const Select = ({ children = [], name, placeholder = "", onChange: onch, inputClassName, className, ...rest }) => {
+const Select = ({ children = [], name, placeholder = "", noSuggestion = (text) => console.log("There is no suggestion", text), onChange: onch, inputClassName, className, ...rest }) => {
     const [selected, setSelected] = useState({ value: "", text: "" });
     const [searchStr, setSearchStr] = useState("");
     const onChange = onch;
@@ -61,7 +60,7 @@ const Select = ({ children = [], name, placeholder = "", onChange: onch, inputCl
                     <path d="M15.4043 23.2068L6.63872 14.4412C6.03286 13.8354 6.03286 12.8557 6.63872 12.2562L8.09536 10.7996C8.70122 10.1938 9.68091 10.1938 10.2803 10.7996L16.4936 17.0129L22.7069 10.7996C23.3127 10.1938 24.2924 10.1938 24.8918 10.7996L26.3485 12.2562C26.9543 12.8621 26.9543 13.8418 26.3485 14.4412L17.5829 23.2068C16.9899 23.8127 16.0102 23.8127 15.4043 23.2068Z" fill="white" />
                 </svg>
                 <div className="compoent-children-wraper component-DropDown">
-                    {filtered}
+                    {filtered.length ? filtered : noSuggestion(searchStr)}
                 </div>
             </div>
 

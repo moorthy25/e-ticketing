@@ -1,11 +1,23 @@
 import './login.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Forms from "../generalComponent/Forms";
 import loginImg from '../assets/login.svg';
+import LoginCheck from './loginCheck';
+import { setLocal } from './locals';
 
 const LoginAdmin = () => {
-    function values(arr) {
-        console.log(arr);
+    const navigate = useNavigate()
+    LoginCheck({ login: true })
+    function values(obj) {
+        let { username, password } = obj
+        if (username === "admin" && password == "admin") {
+            setLocal('user', { userType: "admin" })
+            navigate("/admin")
+        }
+        else {
+            // username : phonenumber
+            // currentVehiclenumber
+        }
     }
     return (
         <>

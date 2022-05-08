@@ -1,12 +1,14 @@
 // import { Link } from "react-router-dom";
 import './header.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from '../assets/logo.svg'
 import logout from '../assets/logout.svg'
 import login from '../assets/login.svg'
 import Forms from '../generalComponent/Forms';
+import { removeLocal } from './locals';
 
 const Header = ({ admin = false, home = false, user = false, conductor = false }) => {
+    const navigate = useNavigate()
     const buses = [
         "TN 64 N 4564",
         "TN 64 N 4564",
@@ -46,7 +48,10 @@ const Header = ({ admin = false, home = false, user = false, conductor = false }
                         {/* <Link to={'BookTicket'}><button className="btn w100 p10 ws-nowrap c-secondary">GET Ticket</button></Link> */}
                     </div>}
                     {home ? <div><Link to={'/login'} className='btn secondary p10'>Login</Link> </div> :
-                        <img src={logout} alt="logout" />}
+                        <img onClick={() => {
+                            removeLocal('user')
+                            navigate('/')
+                        }} src={logout} alt="logout" />}
                 </div>
             </>
             {/* </div> */}

@@ -26,7 +26,7 @@
     outline: none;
 }
 
-.component-wraper .binder input:focus ~ .compoent-children-wraper {
+.component-wraper .binder input:focus~.compoent-children-wraper {
     display: block;
 }
 
@@ -100,6 +100,14 @@ button {
     cursor: pointer;
     width: 100%;
     background-color: transparent;
+}
+
+input:disabled {
+    opacity: 0.5;
+}
+
+button:disabled {
+    opacity: 0.5;
 }
 
 .btn {

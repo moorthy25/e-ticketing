@@ -1,0 +1,37 @@
+{
+    "users": {
+        "phone": "string",
+        "name": "str"
+    },
+    "conductor": {
+        "phone": "string",
+        "name": "str",
+        "currentVehicle": "vehicle number",
+        "previousVehicles": [{ "from": "date", "vehicleno": "str" }]
+    },
+    "vehicle": {
+        "vehicleno": "str",
+        "currentRoute": "str - routeObject",
+        "currentConducor":"conductor obj"
+    },
+    "route": {
+        "routename": "str",
+        "stops": [{ "stopname": "stop1", "price": [] }, { "stopname": "stop2", "price": [10] }, "..."]
+    },
+    "transaction": {
+        "amt": 152,
+        "paymentno": "from rzp",
+        "user": {
+            "phone": "string",
+            "name": "str"
+        },
+        "passenger": 2,
+        "luggage": 1,
+        "invoiceno": "str",
+        "date": "date",
+        "from": "from station",
+        "to": "station",
+        "vehicleno": "vehicle no"
+    }
+
+}
