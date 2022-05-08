@@ -1,7 +1,11 @@
 import './TicketDetails.css'
 import rightArr from '../assets/rarr.svg'
 import downImg from '../assets/download.svg'
+import { getLocal } from './locals';
+import moment from 'moment';
 const TicketDetails = () => {
+
+    const data = getLocal('trans')
     return (
         <div className="center">
             <div className="tiketDetailsContainer">
@@ -10,35 +14,36 @@ const TicketDetails = () => {
                 </div> */}
                 <div className="li-row">
                     <div className="li-column">
-                        #1654
+                        {data.paymentno}
                         <span>
-                            TN 69 N 4655
+                            {data.vehivleno}
                         </span>
                     </div>
                     <div className="li-column">
-                        25/04/2022
+                        {/* {moment(data.date.seconds).format("DD/MM/YYYY")} */}
+                        {data.date}
                     </div>
                     <div className="li-column">
-                        ₹645
+                        ₹{data.amt}
                     </div>
                 </div>
                 <div className="bookedBy">
                     <div className="left">
-                        <p className="detail">No of passenger : <span>4</span></p>
-                        <p className="detail">No of Luggages : <span>5</span></p>
+                        <p className="detail">No of passenger : <span>{data.passenger}</span></p>
+                        <p className="detail">No of Luggages : <span>{data.luggage}</span></p>
                     </div>
                     <div className="right">
                         <div className="head">Booked by</div>
                         <div className="body">
-                            Mr. Kumaran
+                            {data.user.name}
                             <br />
-                            9876543210
-                            <br />
-                            me@mumaran.me
+                            {data.user.phone}
+                            {/* <br />
+                            me@mumaran.me */}
                         </div>
                     </div>
                 </div>
-                <section className='priceDetails'>
+                {/* <section className='priceDetails'>
                     <div className="head">Price Details</div>
                     <div className="prow">
                         <div className="pclm">
@@ -85,8 +90,8 @@ const TicketDetails = () => {
                             ₹{"645"}
                         </span>
                     </div>
-                </section>
-                <section className='travelDirection'>Tiruchendur(005) <img src={rightArr} alt="Right arrow" /> Nagarcovil(018)</section>
+                </section> */}
+                <section className='travelDirection'>{data.from} <img src={rightArr} alt="Right arrow" /> {data.to}</section>
             </div>
         </div>
     );
