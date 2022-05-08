@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Forms = ({ children, onSubmit, className, ...rest }) => {
     const exSubmit = e => {
@@ -21,8 +21,11 @@ const Forms = ({ children, onSubmit, className, ...rest }) => {
 }
 
 
-const Input = ({ placeholder = "", value, onChange: onCng = (e, v, setD) => { console.log(v); setD(v) }, name, type, className, ...rest }) => {
-    const [d, setD] = useState("");
+const Input = ({ placeholder = "", defaultValue = "", value, onChange: onCng = (e, v, setD) => { console.log(v); setD(v) }, name, type, className, ...rest }) => {
+    const [d, setD] = useState();
+    useEffect(() => {
+        setD(defaultValue)
+    }, [defaultValue]);
     let onChange = onCng;
     if (type === "number") {
         type = "text";

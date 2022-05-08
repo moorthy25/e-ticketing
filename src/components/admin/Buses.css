@@ -36,9 +36,13 @@ select {
     background-color: var(--color-primary);
     /* border-radius: 8px; */
 }
-
+.busList.staffList .row {
+    grid-template-columns: 1fr 1.5fr .5fr;
+}
 .busList .row {
     /* background-color: aqua; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.3fr .5fr;
     cursor: pointer;
     margin: .5rem 0;
     justify-content: space-around;
@@ -46,6 +50,7 @@ select {
 
 .busList .details {
     white-space: nowrap;
+    text-align: center;
     font-size: clamp(1.8rem, .1rem + .1vw, 3rem);
     color: var(--white);
 }
