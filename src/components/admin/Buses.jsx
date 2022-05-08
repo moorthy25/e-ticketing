@@ -19,10 +19,8 @@ const Buses = () => {
 
 
     const [busList, setBusList] = useState([]);
-    console.log("bus list", busList);
     const [updateObj, setUpdateObj] = useState(null);
     const [conductorList, setConductorList] = useState([]);
-    console.log("conductor list", conductorList);
     const [routes, setRoutes] = useState([]);
     const getRoutes = async () => {
         const routes = await getDocs(collection(db, 'route'))

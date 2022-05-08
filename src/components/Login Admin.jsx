@@ -4,19 +4,31 @@ import Forms from "../generalComponent/Forms";
 import loginImg from '../assets/login.svg';
 import LoginCheck from './loginCheck';
 import { setLocal } from './locals';
+import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
+import app from '../firebase';
+
+const db = getFirestore(app)
 
 const LoginAdmin = () => {
     const navigate = useNavigate()
     LoginCheck({ login: true })
-    function values(obj) {
+    async function values(obj) {
         let { username, password } = obj
         if (username === "admin" && password == "admin") {
             setLocal('user', { userType: "admin" })
             navigate("/admin")
         }
         else {
-            // username : phonenumber
-            // currentVehiclenumber
+            // phone
+            // currentVehicle
+            const docs = await getDocs(query(collection(db, 'conductor'), where("phone", "==", username), where("currentVehicle", "==", password)))
+            if (!docs.empty) {
+                setLocal('user', { userType: "conductor", currentVehicle: password })
+                navigate('/conductor')
+            }
+            else
+                alert("Username or password is wrong")
+
         }
     }
     return (
