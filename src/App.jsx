@@ -17,24 +17,28 @@ import HistoryVerification from './components/HistoryVerification';
 import QRGenarator from './components/admin/QRGenarator';
 import Staff from './components/admin/Staff';
 import LoginAdmin from './components/Login Admin';
+import Forms from './generalComponent/Forms';
 
 function App() {
   return (
     <div className="app">
       <Routes>
         <Route path='/' element={<Home />} />
+        {/* <Route path='/' element={<AutoFill />} /> */}
         <Route path='/vehicle/:vnum' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/login/admin' element={<LoginAdmin />} />
         <Route path='/user' element={<User />} >
-          <Route path='BookTicket' index element={<BookTicket />} />
+          <Route index element={<BookTicket />} />
+          <Route path='BookTicket' element={<BookTicket />} />
           <Route path='history' element={<History />} />
           <Route path='history/:ticketID' element={<TicketDetails />} />
         </Route>
         <Route path='/admin' element={<Admin />} >
           <Route path='transaction' element={<HistoryVerification admin />} />
           <Route path='transaction/ticket/:id' element={<TicketDetails admin />} />
-          <Route path='buses' element={<Buses />} />
+          <Route index element={<Buses />} />
+          <Route path='buses' index element={<Buses />} />
           <Route path='QR' element={<QRGenarator />} />
           <Route path='staff' element={<Staff />} />
           <Route path='routes' element={<RoutePrice />} />

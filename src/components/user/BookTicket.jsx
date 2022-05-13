@@ -4,9 +4,9 @@ import payIcon from '../../assets/payIcon.svg'
 import rightArrow from '../../assets/rarr.svg'
 import './BookTicket.css'
 import { useEffect, useState } from "react";
-import { addDoc, collection, doc, Firestore, getDoc, getDocs, getFirestore, query, Timestamp, where } from "firebase/firestore";
+import { addDoc, collection, doc, Firestore, getDoc, getDocs, getFirestore, query, setDoc, Timestamp, where } from "firebase/firestore";
 import app from "../../firebase";
-import { setLocal } from "../locals";
+import { getLocal, setLocal } from "../locals";
 import { useNavigate } from "react-router-dom";
 // import Razorpay from 'razorpay'
 
@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 const db = getFirestore(app)
 
 const BookTicket = ({ vnum = "" }) => {
+    console.log("vnum", vnum);
     const [location, setLocation] = useState({ from: {}, to: {} });
     const [details, setDetails] = useState({ passenger: 1, luggage: 0 });
 
@@ -26,8 +27,9 @@ const BookTicket = ({ vnum = "" }) => {
     // console.log("price", price);
     // const [passenger, setPassenger] = useState(1);
     // const [luggage, setLuggage] = useState(0);
-    const [phone, setPhone] = useState("");
-    const [name, setName] = useState("");
+    const localUser = getLocal('user')
+    const [phone, setPhone] = useState(localUser?.phone || "");
+    const [name, setName] = useState(localUser?.name || "");
     const changeIDs = (d, field) => setLocation(p => ({ ...p, [field]: d }));
 
     const navigate = useNavigate()
@@ -35,7 +37,7 @@ const BookTicket = ({ vnum = "" }) => {
 
 
 
-    const getRoutes = async (v) => {
+    const getRoutes = async (v = { text: "" }) => {
         console.log(" selectedVehicle.text", selectedVehicle);
         const docs = await getDocs(query(collection(db, 'vehicle'), where('vehicleno', "==", selectedVehicle.text || v.text)))
         console.log("docs", docs);
@@ -58,17 +60,22 @@ const BookTicket = ({ vnum = "" }) => {
 
 
     const getPrice = () => {
+        console.log("from get price");
         const { passenger, luggage } = details
         if (location.from.value < location.to.value) {
+
+            console.log("from get price inside if");
             // console.log('price cal', croute.stops[location.to.value].price[location.from.value]);
             setPrice((parseInt(croute.stops[location.to.value].price[location.from.value]) * passenger) + (parseInt(croute.stops[location.to.value].price[location.from.value]) * 0.5 * luggage))
         }
-        else if (location.to.value < location.from.value)
+        else if (location.to.value < location.from.value) {
+            console.log("from get price inside else if");
             setPrice((parseInt(croute.stops[location.from.value].price[location.to.value]) * passenger) + (parseInt(croute.stops[location.from.value].price[location.to.value]) * 0.5 * luggage))
+        }
     }
     useEffect(() => {
         getPrice()
-    }, [details]);
+    }, [details, location]);
 
     useEffect(() => {
         getRoutes()
@@ -95,11 +102,13 @@ const BookTicket = ({ vnum = "" }) => {
                         name={'depart'}
                         onChange={(e, v) => {
                             // console.log(e, v, "depart");
-                            if (e.value !== location.to.value)
+                            if (e.value !== location.to.value) {
+                                console.log("inside if ");
                                 changeIDs(e, "from")
+                            }
                             else
                                 alert("Can't select same destinations")
-                            getPrice()
+                            // getPrice()
                         }}>
                         {croute.stops.map((s, i) => <Forms.Option key={i} value={i}>{s.stopName}</Forms.Option>)}
                     </Forms.Select>
@@ -116,7 +125,7 @@ const BookTicket = ({ vnum = "" }) => {
                                 changeIDs(e, "to")
                             else
                                 alert("Can't select same destinations")
-                            getPrice()
+                            // getPrice()
                         }}>
                         {croute.stops.map((s, i) => <Forms.Option key={i} value={i}>{s.stopName}</Forms.Option>)}
                         {/* {stops..map(s => <Forms.Option key={s.id} value={s.id}>{s.name}</Forms.Option>)} */}
@@ -166,7 +175,7 @@ const BookTicket = ({ vnum = "" }) => {
                     async function paymentResponse(res) {
                         console.log(res);
                         console.log(location, details, price, name, phone, selectedVehicle);
-                        const doc = await addDoc(collection(db, 'transaction'), {
+                        await addDoc(collection(db, 'transaction'), {
                             "amt": price,
                             "paymentno": res.razorpay_payment_id,
                             "user": {
@@ -180,7 +189,11 @@ const BookTicket = ({ vnum = "" }) => {
                             "to": location.to.text,
                             "vehicleno": selectedVehicle.text
                         })
-                        setLocal('user', { userType: "user", phone: phone })
+                        setDoc(doc(db, `users/${phone}`), {
+                            "phone": phone,
+                            "name": name
+                        })
+                        setLocal('user', { userType: "user", phone: phone,phoneNumber:phone, name })
                         navigate('/user')
                     }
                     var options = {

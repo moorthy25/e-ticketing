@@ -40,6 +40,7 @@ const Staff = () => {
     return (
         <div className="center">
             <div className="busesDetails">
+                <h2 style={{ color: 'whitesmoke' }}>Note : Login Details Staff username : phone number | password : Bus number(vehicle number)</h2>
                 <div className="controls">
                     {updateObj && <div className="busList row">
                         <div className="details mh-8">{updateObj.name}</div>

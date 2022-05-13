@@ -6,8 +6,11 @@ import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth
 import { useState } from 'react';
 import LoginCheck from './loginCheck';
 import { setLocal } from './locals';
+import { doc, getDoc, getFirestore } from 'firebase/firestore';
+import app from '../firebase';
 
 const auth = getAuth();
+const db = getFirestore(app)
 const Login = () => {
     LoginCheck({ login: true })
     function values(arr) {
@@ -48,11 +51,12 @@ const Login = () => {
     }
     const navigate = useNavigate()
     const verifyOTP = () => {
-        window.confirmationResult.confirm(OTP).then((result) => {
+        window.confirmationResult.confirm(OTP).then(async (result) => {
             // User signed in successfully.
             const user = result.user;
             console.log(user);
-            setLocal("user", { userType: "user", phoneNumber: phoneNumber, name: "" })
+            const userDoc = await getDoc(doc(db, `users/${phoneNumber}`))
+            setLocal("user", { userType: "user", phone: phoneNumber, phoneNumber: phoneNumber, name: userDoc.data().name })
             navigate('/user')
             // ...
         }).catch((error) => {

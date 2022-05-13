@@ -1,10 +1,11 @@
-import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
+import { collection, getDocs, getFirestore, onSnapshot, orderBy, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import app from '../firebase';
 import './history.css'
 import { getLocal, setLocal } from './locals';
 import moment from 'moment';
+import { async } from '@firebase/util';
 
 const db = getFirestore(app)
 
@@ -58,14 +59,28 @@ const HistoryVerification = ({ admin }) => {
     const [data, setData] = useState([]);
     console.log(data);
     useEffect(() => {
-        getTransactions()
+        return getTransactions()
     }, []);
-    const getTransactions = async () => {
-        const q = admin ? query(collection(db, 'transaction')) : query(collection(db, 'transaction'), where("vehicleno", "==", getLocal('user').currentVehicle))
-        const docs = await getDocs(q)
+    const execGetData = (docs) => {
         const li = []
         docs.forEach(d => li.push({ ...d.data(), id: d.id }))
         setData(li)
+    }
+    const getAdminTransaction = async (q) => {
+        let docs;
+        docs = await getDocs(q)
+        execGetData(docs)
+    }
+    const getTransactions = () => {
+        const q = admin ? query(collection(db, 'transaction'), orderBy('date', 'desc')) : query(collection(db, 'transaction'), where("vehicleno", "==", getLocal('user').currentVehicle), orderBy('date', 'desc'))
+        if (admin)
+            getAdminTransaction(q)
+        else
+            return onSnapshot(q, ss => {
+                execGetData(ss.docs)
+            })
+        return () => console.log("Transaction getting stopped");
+
     }
 
     const navigate = useNavigate()
